@@ -3,14 +3,18 @@ import Pexel from "./Pexel";
 class Economy {
     constructor(numPexels) {
         console.log("Initiating economy.");
-        this.pexels = [];
+        this.pexels = {};
         for (let i = 0; i < numPexels; i++) {
-            this.pexels.push(new Pexel());
+            const pexel = new Pexel();
+            this.pexels[pexel.uuid] = pexel;
         }
     }
 
     simulateDay() {
         console.log("Simulating economy day.");
+        for (const pexel of Object.values(this.pexels)) {
+            pexel.simulateDay();
+        }
     }
 }
 
